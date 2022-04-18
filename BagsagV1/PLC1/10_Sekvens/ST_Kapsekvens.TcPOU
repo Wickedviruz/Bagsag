@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="ST_Kapsekvens" Id="{7a96f90f-3e0b-4ded-b986-4d8b4bc8b315}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM ST_Kapsekvens
+VAR
+	Kapsekvens	:		INT		:=0;
+	ErrorCode : WSTRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF GVL.bAutomaticMode=TRUE AND NOT GVL.bEmergency=TRUE  THEN
+	Kapsekvens:=1;
+END_IF
+
+
+// Sekvens för sågning // 
+CASE Kapsekvens	OF
+	
+	// Sekvens inom 1-9 är kontroll av program ect //
+	1: IF GVL.bKapsekvens=TRUE AND GVL.bAutomaticMode=TRUE THEN
+			Kapsekvens:=10; //Till klampnings kontroll
+		ELSE
+			Kapsekvens:=2001;
+		END_IF
+		
+	//Sekvens inom 10 inkulderar kontroll av svärd och låsning av det //
+	10: IF GVL.bSvard1=TRUE OR GVL.bSvard2=TRUE THEN
+			GVL.bSvardVentil1:=TRUE;
+			GVL.bSvardVentil2:=TRUE;
+			Kapsekvens:=11;
+		ELSE
+			Kapsekvens:=2002;
+		END_IF
+		
+	11: IF GVL.bSvard1Last=TRUE OR GVL.bSvard2Last=TRUE THEN
+			kapsekvens:=20;
+		END_IF
+	
+	// Sekvens inom 20 är sågning av ett blad //
+	// SNabbkörning till kap pos //
+	20: IF GVL.bSvard1Last=TRUE OR GVL.bSvard2Last=TRUE THEN
+			GVL_Motion.stSA_AbsCmd1.lrPosition:=200.00;
+			GVL_Motion.stSA_AbsCmd1.bExe:=TRUE;
+			Kapsekvens:=21;
+		ELSE
+			Kapsekvens :=30;
+		END_IF
+	
+		// Påbörjad kapning //
+	21:	GVL_Motion.stSA_AbsCmd1.bExe:=FALSE;
+		 IF GVL_Motion.stSA_AbsCmd1.lrPosition=200 THEN
+			GVL.bSagblad:=TRUE;
+			GVL.bKylpump:=TRUE;
+			GVL_Motion.stSA_AbsCmd1.lrPosition:=300.00;
+		ELSE
+			Kapsekvens:=2003;
+		END_IF
+	
+	// Sekvens inom 30 är sågning av två blad //
+	30: IF GVL.bSvard2Last=1 AND GVL.bSvard1Last=1 THEN
+			GVL_Motion.stSA_AbsCmd1.lrPosition:=200.00;
+			GVL_Motion.stSA_AbsCmd1.bExe:=TRUE;
+			Kapsekvens:=31;
+		ELSE
+			Kapsekvens :=40;
+		END_IF
+		
+	// Sekvens över 2000 är error hantering // 
+	2001: ErrorCode:="Ej i automatik";
+	2002: ErrorCode:="Maskin tom?";
+	2003: ErrorCode:="Position ej nådd";
+	2004: ErrorCode:="Sekvensfel";
+	
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="ST_Kapsekvens">
+      <LineId Id="107" Count="0" />
+      <LineId Id="110" Count="1" />
+      <LineId Id="108" Count="1" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="105" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="58" Count="3" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="72" Count="0" />
+      <LineId Id="126" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="98" Count="0" />
+      <LineId Id="97" Count="0" />
+      <LineId Id="99" Count="1" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="26" Count="0" />
+      <LineId Id="29" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="71" Count="0" />
+      <LineId Id="35" Count="0" />
+      <LineId Id="39" Count="1" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="37" Count="0" />
+      <LineId Id="49" Count="1" />
+      <LineId Id="148" Count="0" />
+      <LineId Id="41" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="51" Count="0" />
+      <LineId Id="95" Count="1" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="53" Count="0" />
+      <LineId Id="106" Count="0" />
+      <LineId Id="83" Count="1" />
+      <LineId Id="112" Count="0" />
+      <LineId Id="86" Count="2" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="55" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="103" Count="0" />
+      <LineId Id="133" Count="0" />
+      <LineId Id="67" Count="0" />
+      <LineId Id="12" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

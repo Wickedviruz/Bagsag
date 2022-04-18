@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <GVL Name="GVL" Id="{23e81069-fc6f-4f01-b242-7f728f6bb6bc}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+VAR_GLOBAL
+	// Main funktioner //
+	bPowerOn		:	BOOL;
+	bPowerOff		:	BOOL;
+	bEmergency		:	BOOL;
+	bAutomaticMode	:	BOOL;
+	bKapsekvens		:	BOOL;
+
+	// Svärd hållare //
+	bSvard1			:	BOOL;
+	bSvard2			:	BOOL;
+	bSvardVentil1	:	BOOL;
+	bSvardVentil2	:	BOOL;
+	bSvard1Last		:	BOOL;
+	bSvard1EjLast	:	BOOL;
+	bSvard2Last		:	BOOL;
+	bSvard2EjLast	:	BOOL;
+	
+	// Renblåsning //
+	bRenblasningsVentil	:	BOOL;
+	
+	// Motor kontroller //
+	bSagblad		:	BOOL;
+	bKylpump		:	BOOL;
+	
+END_VAR]]></Declaration>
+  </GVL>
+</TcPlcObject>
