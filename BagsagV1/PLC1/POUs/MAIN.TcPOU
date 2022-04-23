@@ -7,13 +7,14 @@ END_VAR
 ]]></Declaration>
     <Implementation>
       <ST><![CDATA[ST_MotionControl();
-LD_Spantransportor();
-ST_Kapsekvens();]]></ST>
+ST_Kapsekvens();
+ST_Homing();
+LD_Spantransportor();]]></ST>
     </Implementation>
     <LineIds Name="MAIN">
       <LineId Id="2" Count="0" />
-      <LineId Id="6" Count="0" />
       <LineId Id="10" Count="0" />
+      <LineId Id="14" Count="1" />
     </LineIds>
   </POU>
 </TcPlcObject>

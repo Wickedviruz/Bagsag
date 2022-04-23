@@ -1440,8 +1440,7 @@ External Setpoint Generation:
 					<Name>Y_Axis</Name>
 					<Comment><![CDATA[Matning till sågen]]></Comment>
 					<AxisPara>
-						<Dynamic AccelerationMaximum="200" DecelerationMaximum="200" Acceleration="150" Deceleration="150"/>
-						<Velo Maximum="100"/>
+						<Velo Maximum="2200"/>
 						<OtherSettings AllowMotionCmdToSlave="true"/>
 					</AxisPara>
 					<Encoder Name="Enc" EncType="1">
@@ -1503,7 +1502,7 @@ External Setpoint Generation:
 					</Encoder>
 					<Drive Name="Drive" DrvType="5">
 						<DrvPara>
-							<Analog VeloReferenz="100" TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
+							<Analog TorqueSetpointScale="10" ScaleFactorActTorque="0.1"/>
 							<TimeComp TaskDelayCycles="1"/>
 						</DrvPara>
 						<Vars VarGrpType="1">

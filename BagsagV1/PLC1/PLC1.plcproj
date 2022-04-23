@@ -15,9 +15,18 @@
     <Implicit_KindOfTask>{654ec0fa-249b-4ea2-be8f-70f28850944b}</Implicit_KindOfTask>
     <Implicit_Jitter_Distribution>{9f5d0780-1acd-4d0e-b8fc-acf63413ad9f}</Implicit_Jitter_Distribution>
     <LibraryReferences>{12f2cec8-d9b4-4dd6-af82-a40d16684482}</LibraryReferences>
+    <Company>JIAB</Company>
+    <Released>false</Released>
+    <ProjectVersion>1.0.0</ProjectVersion>
+    <Author>Johan Ivarsson</Author>
+    <Description>Testversion av en kap till MV teknik</Description>
+    <Title>Bågsåg</Title>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="10_Sekvens\ST_Kapsekvens.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="20_Motion\ST_Homing.TcPOU">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="20_Motion\ST_MotionControl.TcPOU">

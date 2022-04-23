@@ -4,28 +4,30 @@
     <Declaration><![CDATA[{attribute 'qualified_only'}
 VAR_GLOBAL
 	// Main funktioner //
-	bPowerOn		:	BOOL;
-	bPowerOff		:	BOOL;
-	bEmergency		:	BOOL;
-	bAutomaticMode	:	BOOL;
-	bKapsekvens		:	BOOL;
+	bPowerOn			:	BOOL;
+	bPowerOff			:	BOOL;
+	bEmergency			:	BOOL;
+	bAutomaticMode		:	BOOL;
+	bKapsekvens			:	BOOL;
+	bKapsekvensDone		:	BOOL;
 
 	// Svärd hållare //
-	bSvard1			:	BOOL;
-	bSvard2			:	BOOL;
-	bSvardVentil1	:	BOOL;
-	bSvardVentil2	:	BOOL;
-	bSvard1Last		:	BOOL;
-	bSvard1EjLast	:	BOOL;
-	bSvard2Last		:	BOOL;
-	bSvard2EjLast	:	BOOL;
+	bSvard1				:	BOOL;
+	bSvard2				:	BOOL;
+	bSvardVentil1		:	BOOL;
+	bSvardVentil2		:	BOOL;
+	bSvard1Last			:	BOOL;
+	bSvard1EjLast		:	BOOL;
+	bSvard2Last			:	BOOL;
+	bSvard2EjLast		:	BOOL;
 	
-	// Renblåsning //
+	// Renhållning av maskin //
 	bRenblasningsVentil	:	BOOL;
+	Span_trans_Timer	: TOF;
 	
 	// Motor kontroller //
-	bSagblad		:	BOOL;
-	bKylpump		:	BOOL;
+	bSagblad			:	BOOL;
+	bKylpump			:	BOOL;
 	
 END_VAR]]></Declaration>
   </GVL>

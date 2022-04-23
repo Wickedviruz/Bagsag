@@ -12,10 +12,6 @@ VAR_GLOBAL
 	fbSA_Power	:	MC_POWER;
 	fbSA_Home	:	MC_HOME;
 	fbSA_Jog	:	MC_JOG;
-	fbSA_MoveVel1	:	MC_MoveVelocity;
-	fbSA_MoveVel2	:	MC_MoveVelocity;
-	fbSA_MoveRel1	:	MC_MoveRelative;
-	fbSA_MoveRel2	:	MC_MoveRelative;
 	fbSA_MoveAbs1	:	MC_MoveAbsolute;
 	fbSA_MoveAbs2	:	MC_MoveAbsolute;
 	fbSA_SetPos		:	MC_SetPosition;
@@ -39,10 +35,6 @@ VAR_GLOBAL
 	bSA_JogFwd			:	BOOL;
 	bSA_JogRev			:	BOOL;
 	
-	stSA_VelCmd1		:	ST_MC_CMD;
-	stSA_VelCmd2		:	ST_MC_CMD;
-	stSA_RelCmd1		:	ST_MC_CMD;
-	stSA_RelCmd2		:	ST_MC_CMD;
 	stSA_AbsCmd1		:	ST_MC_CMD;
 	stSA_AbsCmd2		:	ST_MC_CMD;
 	
@@ -60,16 +52,13 @@ VAR_GLOBAL
 	stSA_SetPosition	:	ST_MC_Status;
 	stSA_Jog			:	ST_MC_Status;
 	
-	stSA_VelSts1		:	ST_MC_Status;
-	stSA_VelSts2		:	ST_MC_Status;
-	stSA_RelSts1		:	ST_MC_Status;
-	stSA_RelSts2		:	ST_MC_Status;
 	stSA_AbsSts1		:	ST_MC_Status;
 	stSA_AbsSts2		:	ST_MC_Status;
 	
 	stSA_Halt			:	ST_MC_Status;
 	stSA_Stop			:	ST_MC_Status;
 	
+
 END_VAR]]></Declaration>
   </GVL>
 </TcPlcObject>

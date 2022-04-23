@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.10">
+  <POU Name="ST_Homing" Id="{19693b42-cc35-44c1-97d2-47b963b0ed2a}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM ST_Homing
+VAR
+	Sekvens: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[CASE Sekvens OF
+	//Påbörja homing //
+	10: GVL_Motion.fbSA_Home(Axis:=GVL_Motion.Y_Axis,bCalibrationCam:=GVL_Motion.bSA_HomeCamInput,Execute:=TRUE);
+		IF GVL_Motion.fbSA_Home.Busy THEN
+			Sekvens:=210;
+		END_IF
+		
+		
+	// Homing pågår //
+	20: IF GVL_Motion.fbSA_Home.Done AND NOT GVL_Motion.fbSA_Home.Error THEN
+			GVL_Motion.bSA_HomeExe:=FALSE;
+			Sekvens:=220;
+		ELSIF GVL_Motion.stSA_Home.Error THEN
+			GVL_Motion.bSA_HomeExe:=FALSE;
+			Sekvens:=2003;
+		END_IF
+		
+	// Homing klar //
+	30: IF GVL_Motion.fbSA_Home.Done THEN
+		Sekvens:=300;
+		END_IF
+END_CASE]]></ST>
+    </Implementation>
+    <LineIds Name="ST_Homing">
+      <LineId Id="27" Count="0" />
+      <LineId Id="7" Count="18" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="28" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

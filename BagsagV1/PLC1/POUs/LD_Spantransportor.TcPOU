@@ -4,8 +4,6 @@
     <Declaration><![CDATA[PROGRAM LD_Spantransportor
 VAR
 	Span_transportor: BOOL;
-	Span_trans_Timer: TOF;
-	Program_done: BOOL;
 END_VAR
 ]]></Declaration>
     <Implementation>
@@ -55,7 +53,7 @@ END_VAR
                       <o n="RValue" t="BoxTreeBox">
                         <v n="BoxType">"TOF"</v>
                         <o n="Instance" t="Operand">
-                          <v n="Operand">"Span_trans_Timer"</v>
+                          <v n="Operand">"GVL.Span_trans_Timer"</v>
                           <v n="Type">"TOF"</v>
                           <v n="Comment">""</v>
                           <v n="SymbolComment">""</v>
@@ -128,7 +126,7 @@ END_VAR
                             <l2 n="InputItems" cet="BoxTreeOperand">
                               <o>
                                 <o n="Operand" t="Operand">
-                                  <v n="Operand">"Program_done"</v>
+                                  <v n="Operand">"GVL.bKapsekvensDone"</v>
                                   <v n="Type">"BOOL"</v>
                                   <v n="Comment">""</v>
                                   <v n="SymbolComment">""</v>
